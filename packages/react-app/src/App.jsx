@@ -91,7 +91,12 @@ function App() {
           and give you a form to interact with it locally
       */}
 
+      {/* this name prop is very important! It basically indicates to the Contract component
+      which one of our smart contracts to use. */}
+
       <Contract name="YourToken" provider={userProvider} address={address} />
+
+      <Contract name="TokenSwap" provider= {userProvider} address={address} />
 
       <Hints address={address} yourLocalBalance={yourLocalBalance} price={price} mainnetProvider={mainnetProvider} />
 
