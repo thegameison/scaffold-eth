@@ -38,6 +38,8 @@ const logoutOfWeb3Modal = async () => {
   }, 1);
 };
 
+
+// States for different views
 function App() {
   const [dist, setDist] = useState(false);
   const swapDist = () => {
@@ -126,6 +128,8 @@ function App() {
       which one of our smart contracts to use. */}
 
       {/* <Contract name="YourToken" provider={userProvider} address={address} /> */}
+
+      {/* shows the different views */}
       {home && <div id="middle">Welcome to AllenCoin. AllenCoin is an ERC20 token that lets you reward others for community involvement or good deeds. In the "Claim" tab,
         claim one AllenCoin once a week. In the "Transfer" tab, view your balance and send coins to other users. In the "Giveaways" tab, join a Giveaway, or if you're
         an Admin, run a giveaway.

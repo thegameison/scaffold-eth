@@ -5,16 +5,18 @@ import "./YourToken.sol";
 contract Giveaway {
     YourToken private token;
     uint256 public entries;
+
+    // address of winner is stored here
     address public prevWinner;
 
     address[] private giveaways;
     mapping(address => bool) private whiteList;
 
+    // modifiers for whitelist access
     modifier onlyOwner {
         require(msg.sender == token.ownerWrapper(), 'Access Denied');
         _;
     }
-
     modifier onlyAdmin {
         require(whiteList[msg.sender], 'Access Denied');
         _;
@@ -24,6 +26,7 @@ contract Giveaway {
         token = YourToken(_token);
     }
 
+    // Burns a number of tokens from the caller's wallet, and enters that many tokens into the giveaway
     function getGiveaway(address wallet) public payable {
         require(token.balanceOf(address(wallet)) >= 1, 'You dont have any tokens to enter the giveaway');
         token.burnWrapper(address(wallet), msg.value);
@@ -34,10 +37,12 @@ contract Giveaway {
         entries += msg.value;
     }
 
+    // Adds a user to the whitelist
     function whiteListAdd(address receivr) public onlyOwner {
         whiteList[receivr] = true;
     }
 
+    // Chooses a winner and resets the entries
     function doGiveaway() public onlyAdmin {
         prevWinner = giveaways[block.timestamp % entries];
         entries = 0;
