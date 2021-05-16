@@ -39,6 +39,27 @@ const logoutOfWeb3Modal = async () => {
 };
 
 function App() {
+  const [dist, setDist] = useState(true);
+  const swapDist = () => {
+    setDist(true);
+    setTran(false);
+    setGa(false);
+  }
+  const [tran, setTran] = useState(false);
+  const swapTran = () => {
+    setTran(true);
+    setDist(false);
+    setGa(false);
+  }
+  const [ga, setGa] = useState(false);
+  const swapGa = () => {
+    setGa(true);
+    setDist(false);
+    setTran(false);
+  }
+
+
+
   const [injectedProvider, setInjectedProvider] = useState();
   const price = useExchangePrice(mainnetProvider);
   // const gasPrice = useGasPrice("fast");
@@ -70,9 +91,9 @@ function App() {
 
   return (
     <div className="App">
-      <Header />
+      <Header swapDist={swapDist} swapTran={swapTran} swapGa={swapGa}/>
 
-      <div style={{ position: "fixed", textAlign: "right", right: 0, top: 0, padding: 10 }}>
+      <div style={{ position: "fixed", textAlign: "right", float: "right", right: 0, bottom: 20, padding: 10 }}>
         <Account
           address={address}
           localProvider={localChainProvider}
@@ -94,13 +115,14 @@ function App() {
       {/* this name prop is very important! It basically indicates to the Contract component
       which one of our smart contracts to use. */}
 
-      <Contract name="YourToken" provider={userProvider} address={address} />
-      <Contract name="Distributor" provider={userProvider} address={address} />
-      <Contract name="Transactions" provider= {userProvider} address={address} />
+      {/* <Contract name="YourToken" provider={userProvider} address={address} /> */}
+      {dist && <Contract name="Distributor" provider={userProvider} address={address} />}
+      {tran && <Contract name="Transactions" provider= {userProvider} address={address} />}
+      {ga && <Contract name="Giveaway" provider= {userProvider} address={address} />}
 
-      <Hints address={address} yourLocalBalance={yourLocalBalance} price={price} mainnetProvider={mainnetProvider} />
+      {/* <Hints address={address} yourLocalBalance={yourLocalBalance} price={price} mainnetProvider={mainnetProvider} /> */}
 
-      <div style={{ position: "fixed", textAlign: "left", left: 0, bottom: 20, padding: 10 }}>
+      <div style={{ position: "fixed", textAlign: "left", float: "left", left: 0, bottom: 20, padding: 10 }}>
         <Row align="middle" gutter={4}>
           <Col span={9}>
             <Ramp price={price} address={address} />

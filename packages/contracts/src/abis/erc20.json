@@ -2,7 +2,7 @@
   {
     "constant": true,
     "inputs": [],
-    "name": "HelloWorld",
+    "name": "TEST",
     "outputs": [
       {
         "name": "",

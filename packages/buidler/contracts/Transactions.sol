@@ -4,24 +4,17 @@ import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 
 contract Transactions {
-    IERC20 public token;
-    address public sendr;
-    address public receivr;
-    uint public amt;
+    IERC20 private token;
 
 
-    constructor () public {
-        /*token = IERC20(_token);
-        sendr = _sendr;
-        receivr = _receivr;
-        amt = _amt; */
+    constructor (address _token) public {
+        token = IERC20(_token);
     }
 
-    function sendCoin (address _receivr, uint _amt) public {
-        address sendr = msg.sender;
-        require (token.allowance(sendr, address(this)) >= amt, "Money doesn't grow on trees");
-
-        token.transferFrom(sendr, _receivr, _amt);
+    function sendCoin (address _receivr) public payable {
+        require(token.balanceOf(msg.sender) >= msg.value, 'You need more funds to send that much!');
+        token.approve(msg.sender, msg.value + 1);
+        token.transferFrom(msg.sender, _receivr, msg.value);
 
         // _safeTransferFrom(token, sendr, receivr, amt);
     }

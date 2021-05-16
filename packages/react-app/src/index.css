@@ -6,3 +6,52 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+#top {
+    grid-template-areas: "logo menu config";
+    line-height: 2.3rem;
+    font-size: 2.3rem;
+    transition: .25s;
+    padding: 0 5px;
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-columns: auto 1fr auto;
+    z-index: 2;
+    align-items: center;
+    gap: .5rem;
+    user-select: none;
+}
+
+#top .logo {
+    margin-bottom: .6rem;
+    white-space: nowrap;
+    user-select: none;
+}
+
+#top .logo .bottom {
+    margin-left: -.15rem;
+    transition: .25s;
+}
+
+
+#menu {
+    font-size: 1rem;
+    line-height: 1rem;
+    color: var(--sub-color);
+    display: grid;
+    grid-auto-flow: column;
+    gap: .5rem;
+    width: fit-content;
+    width: -moz-fit-content;
+}
+
+.icon-button {
+    font-size: 1.25rem;
+    display: grid;
+    grid-auto-flow: column;
+    align-content: center;
+    transition: .25s;
+    padding: 1rem;
+    cursor: pointer;
+}
+
