@@ -3,7 +3,7 @@ pragma solidity >=0.6.0 <0.7.0;
 import "./YourToken.sol";
 
 contract Distributor {
-    YourToken public token;
+     public token;
     uint256 entries;
 
     mapping(address => uint256) private LRG;
