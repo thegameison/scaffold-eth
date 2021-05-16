@@ -1,11 +1,11 @@
 import React from "react";
 import { PageHeader } from "antd";
 
-export default function Header({ swapDist, swapTran, swapGa }) {
+export default function Header({ swapDist, swapTran, swapGa, swapHome}) {
   return (
     <div id="top" target="_blank" rel="noopener noreferrer">
       <div class="logo">
-        <div class="bottom">AllenCoin</div>
+        <div class="bottom" onClick={swapHome}>AllenCoin</div>
       </div>
       <div id="menu">
         <div class="icon-button" onClick={swapDist} >Claim</div>

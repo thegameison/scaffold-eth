@@ -31,6 +31,7 @@ code {
 #top .logo .bottom {
     margin-left: -.15rem;
     transition: .25s;
+    cursor:pointer;
 }
 
 
@@ -44,6 +45,12 @@ code {
     width: fit-content;
     width: -moz-fit-content;
 }
+
+#middle {
+  top: 50%;
+}
+
+
 
 .icon-button {
     font-size: 1.25rem;

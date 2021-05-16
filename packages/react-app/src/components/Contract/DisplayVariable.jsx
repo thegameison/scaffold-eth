@@ -45,7 +45,6 @@ const DisplayVariable = ({ contractFunction, functionInfo }) => {
           </h2>
         </Col>
       </Row>
-      <Divider />
     </div>
   );
 };

@@ -39,21 +39,31 @@ const logoutOfWeb3Modal = async () => {
 };
 
 function App() {
-  const [dist, setDist] = useState(true);
+  const [dist, setDist] = useState(false);
   const swapDist = () => {
     setDist(true);
     setTran(false);
     setGa(false);
+    setHome(false);
   }
   const [tran, setTran] = useState(false);
   const swapTran = () => {
     setTran(true);
     setDist(false);
     setGa(false);
+    setHome(false);
   }
   const [ga, setGa] = useState(false);
   const swapGa = () => {
     setGa(true);
+    setDist(false);
+    setTran(false);
+    setHome(false);
+  }
+  const [home, setHome] = useState(true);
+  const swapHome = () => {
+    setHome(true);
+    setGa(false);
     setDist(false);
     setTran(false);
   }
@@ -91,7 +101,7 @@ function App() {
 
   return (
     <div className="App">
-      <Header swapDist={swapDist} swapTran={swapTran} swapGa={swapGa}/>
+      <Header swapDist={swapDist} swapTran={swapTran} swapGa={swapGa} swapHome={swapHome}/>
 
       <div style={{ position: "fixed", textAlign: "right", float: "right", right: 0, bottom: 20, padding: 10 }}>
         <Account
@@ -116,9 +126,13 @@ function App() {
       which one of our smart contracts to use. */}
 
       {/* <Contract name="YourToken" provider={userProvider} address={address} /> */}
-      {dist && <Contract name="Distributor" provider={userProvider} address={address} />}
-      {tran && <Contract name="Transactions" provider= {userProvider} address={address} />}
-      {ga && <Contract name="Giveaway" provider= {userProvider} address={address} />}
+      {home && <div id="middle">Welcome to AllenCoin. AllenCoin is an ERC20 token that lets you reward others for community involvement or good deeds. In the "Claim" tab,
+        claim one AllenCoin once a week. In the "Transfer" tab, view your balance and send coins to other users. In the "Giveaways" tab, join a Giveaway, or if you're
+        an Admin, run a giveaway.
+      </div>}
+      {dist && <Contract fns={["claim"]} name="Distributor" provider={userProvider} address={address} />}
+      {tran && <Contract fns={["transfer", "balanceOf"]} name="YourToken" provider={userProvider} address={address} />}
+      {ga && <Contract fns={["getGiveaway", "doGiveaway", "whiteListAdd", "entries", "prevWinner"]}name="Giveaway" provider={userProvider} address={address} />}
 
       {/* <Hints address={address} yourLocalBalance={yourLocalBalance} price={price} mainnetProvider={mainnetProvider} /> */}
 

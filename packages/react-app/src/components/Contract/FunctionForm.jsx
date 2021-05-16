@@ -48,7 +48,7 @@ export default function FunctionForm({ contractFunction, functionInfo, provider,
                     setTxValue("" + parseFloat(txValue) * 10 ** 18);
                   }}
                 >
-                  ✳️
+                  ️
                 </div>
               </Col>
               <Col span={16}>
@@ -59,7 +59,7 @@ export default function FunctionForm({ contractFunction, functionInfo, provider,
                     setTxValue(BigNumber.from(txValue).toString());
                   }}
                 >
-                  #️⃣
+                  
                 </div>
               </Col>
             </Row>
@@ -73,7 +73,7 @@ export default function FunctionForm({ contractFunction, functionInfo, provider,
     inputs.push(txValueInput);
   }
 
-  const buttonIcon = functionInfo.type === "call" ? "📡" : "💸";
+  const buttonIcon = functionInfo.type === "call" ? "📡" : "Send";
   inputs.push(
     <div style={{ cursor: "pointer", margin: 2 }}>
       <Input
@@ -98,7 +98,8 @@ export default function FunctionForm({ contractFunction, functionInfo, provider,
               const result = tryToDisplay(returned);
 
               console.log("SETTING RESULT:", result);
-              setReturnValue(result);
+              if (typeof result === 'number') setReturnValue(result);
+              else setReturnValue("Done");
             }}
           >
             {buttonIcon}
@@ -124,7 +125,6 @@ export default function FunctionForm({ contractFunction, functionInfo, provider,
         </Col>
         <Col span={16}>{inputs}</Col>
       </Row>
-      <Divider />
     </div>
   );
 }
