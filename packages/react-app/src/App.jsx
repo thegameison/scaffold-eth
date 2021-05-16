@@ -96,7 +96,7 @@ function App() {
 
       <Contract name="YourToken" provider={userProvider} address={address} />
 
-      <Contract name="Distributor" provider= {userProvider} address={address} />
+      <Contract name="Transactions" provider= {userProvider} address={address} />
 
       <Hints address={address} yourLocalBalance={yourLocalBalance} price={price} mainnetProvider={mainnetProvider} />
 

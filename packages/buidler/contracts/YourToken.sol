@@ -15,7 +15,7 @@ contract YourToken is ERC20 {
     }
     
     function getToken() private {
-        require(block.timestamp - LRG[address(msg.sender)] >= 604800, 'You sir, are too early - wait until your next drop');
+        // require(block.timestamp - LRG[address(msg.sender)] >= 604800, 'You sir, are too early - wait until your next drop');
         _mint(msg.sender, 1);
         LRG[address(msg.sender)] = block.timestamp;
     }
