@@ -20,8 +20,12 @@ contract Distributor {
     function getToken() public payable {
         require(block.timestamp - LRG[address(wallet)] >= 604800, 'You sir, are too early - wait until your next drop');
         ERC20 _token = ERC20(address(token));
-        _token._mint(address(wallet), 1);
+        _token._mintWrapper(address(wallet), 1);
         LRG[address(wallet)] = block.timestamp;
+    }
+
+    function joinGiveaway() public payable {
+        require(token)
     }
 
 

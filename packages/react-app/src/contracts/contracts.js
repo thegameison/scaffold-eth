@@ -1,1 +1,1 @@
-module.exports = ["YourToken"];
+module.exports = ["Distributor","YourToken"];

@@ -6,7 +6,9 @@ async function main() {
   //await autoDeploy();
   // OR
   // custom deploy (to use deployed addresses dynamically for example:)
-  const YourToken = await deploy("YourToken",[""+(800*10**18)])
+  const YourToken = await deploy("YourToken")
+  const Distributor = await deploy("Distributor",[YourToken.address]);
+  
   //const examplePriceOracle = await deploy("ExamplePriceOracle")
   //const smartContractWallet = await deploy("SmartContractWallet",[exampleToken.address,examplePriceOracle.address])
 }
